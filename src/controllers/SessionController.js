@@ -19,12 +19,18 @@ class SessionController {
         if (!isPasswordCorrect)
             return res.status(401).send('Senha errada');
 
-        return res.json({
-            token: jwt.sign({ userId: user._id}, process.env.APP_SECRET, {
-                expiresIn: '7d'
-            }),
-            user: user.email
+        const token = jwt.sign({ userId: user._id}, process.env.APP_SECRET, {
+            expiresIn: '7d'
         })
+
+        res.cookie("user", user.nome);
+        res.cookie("token", token);
+        
+        return (
+            res.json({
+                token: token,
+            })
+        )
 
     }
 }
