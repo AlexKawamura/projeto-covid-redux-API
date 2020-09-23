@@ -13,5 +13,10 @@ routes.post('/sessions', SessionController.store);
 routes.use(authMiddleware);
 
 routes.get('/authenticated', (req, res) => res.send('Ok'));
+routes.get('/clear', (req, res) => {
+    res.clearCookie('token');
+    res.clearCookie('user');
+    res.send('cookies cleared');
+})
 
 export default routes;
