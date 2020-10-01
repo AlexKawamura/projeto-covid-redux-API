@@ -3,12 +3,15 @@ import 'dotenv/config';
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import mongoose from 'mongoose';
+import cors from 'cors';
 
 import routes from './routes';
 
 const MONGO_URI = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.pd40a.mongodb.net/projetoCovid?retryWrites=true&w=majority`;
 
 const app = express();
+
+app.use(cors());
 
 app.use(cookieParser());
 
