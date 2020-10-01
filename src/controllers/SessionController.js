@@ -22,13 +22,10 @@ class SessionController {
         const token = jwt.sign({ userId: user._id}, process.env.APP_SECRET, {
             expiresIn: '7d'
         })
-
-        res.cookie("user", user.nome);
-        res.cookie("token", token);
-        
         return (
             res.json({
                 token: token,
+                id: user._id
             })
         )
 
