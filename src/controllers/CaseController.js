@@ -25,3 +25,5 @@ class CaseController {
 }
 
 export default new CaseController();
+
+//teste
