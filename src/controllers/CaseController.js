@@ -17,10 +17,17 @@ class CaseController {
         return res.json({ _id });
     }
 
-    async showAll(req, res){
-        const query = await Case.find().exec();
-        console.log(query);
-        return res.json(query)
+    async showCases(req, res){
+        var casos = [];
+        if (Object.keys(req.query).length > 0) {
+            casos = await Case.find(req.query).exec();
+
+            return res.json(casos)
+        } else {
+            casos = await Case.find().exec();
+
+            return res.json(casos)
+        }
     }
 }
 
