@@ -4,16 +4,21 @@ class UserController {
     async store(req, res) {
         const { nome, email, password, isAdmin } = req.body;
 
-        const user = await User.create({
+        await User.create({
             nome,
             email,
             isAdmin,
             password,
+        }).then(user => {
+            const { _id } = user
+    
+            return res.json({ _id });
+        }).catch(error => {
+            if (error.code === 11000) 
+                return res.status(405).send('Email já existe');
+            else
+                return res.status(405).send('Erro desconhecido');
         });
-
-        const { _id } = user
-
-        return res.json({ _id });
     }
 }
 
