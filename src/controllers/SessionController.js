@@ -26,7 +26,8 @@ class SessionController {
         return (
             res.json({
                 token: token,
-                id: user._id
+                id: user._id,
+                isAdmin: user.isAdmin
             })
         )
 
