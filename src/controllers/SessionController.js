@@ -22,6 +22,7 @@ class SessionController {
         const token = jwt.sign({ userId: user._id}, process.env.APP_SECRET, {
             expiresIn: '7d'
         })
+        
         return (
             res.json({
                 token: token,
